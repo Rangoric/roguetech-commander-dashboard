@@ -6,6 +6,8 @@ describe(`Given a read xlsx`, () => {
   const workbook = readXlsx(sampleAttackLogFileName);
   describe(`when converted`, () => {
     const result = convertXlsxToAttackLog(workbook);
-    test(`then it doesn't fail`, () => {});
+    test(`then it doesn't fail`, () => {
+      expect(result).toBeTruthy();
+    });
   });
 });
