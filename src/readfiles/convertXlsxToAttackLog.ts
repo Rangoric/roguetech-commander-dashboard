@@ -5,12 +5,9 @@ import {
 import { utils, WorkBook } from "xlsx";
 
 export const convertXlsxToAttackLog = (workbook: WorkBook): IAttackLog => {
-  const damageSheet = utils.sheet_to_json(workbook.Sheets["damage"], {
-    header: 1,
-  });
-  const critSheet = utils.sheet_to_json(workbook.Sheets["crit"], {
-    header: 1,
-  });
+  const damageSheet = utils.sheet_to_json(workbook.Sheets["damage"]);
+  const critSheet = utils.sheet_to_json(workbook.Sheets["crit"]);
+  console.log(damageSheet[0]);
   return {
     mechs: getAllMechs(damageSheet, critSheet),
   } as any;
@@ -19,11 +16,11 @@ export const convertXlsxToAttackLog = (workbook: WorkBook): IAttackLog => {
 const getAllMechs = (damageSheet: any, critSheet: any): IMechAttackLog[] => {
   const allNames: string[] = [];
   if (Array.isArray(damageSheet)) {
-    const damageNames = damageSheet.reduce((p, c) => [...p, c[3]], []);
+    const damageNames = damageSheet.map((t) => t["attacker"]);
     allNames.push(...damageNames);
   }
   if (Array.isArray(critSheet)) {
-    const critNames = critSheet.reduce((p, c) => [...p, c[2]], []);
+    const critNames = critSheet.map((t) => t["attacker"]);
     allNames.push(...critNames);
   }
 

@@ -10,7 +10,10 @@ describe(`Given a read xlsx`, () => {
       expect(result).toBeTruthy();
     });
     test(`then it has X mech names`, () => {
-      expect(result.mechs).toHaveLength(16);
+      expect(result.mechs).toHaveLength(15);
+    });
+    test(`then the first mech name is Oracle ACMV`, () => {
+      expect(result.mechs[0].name).toBe(`Oracle ACMV`);
     });
   });
 });
