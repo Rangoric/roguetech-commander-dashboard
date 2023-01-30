@@ -9,5 +9,8 @@ describe(`Given a read xlsx`, () => {
     test(`then it doesn't fail`, () => {
       expect(result).toBeTruthy();
     });
+    test(`then it has X mech names`, () => {
+      expect(result.mechs).toHaveLength(16);
+    });
   });
 });
