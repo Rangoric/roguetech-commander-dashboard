@@ -9,6 +9,7 @@ export const ShowMessages = () => {
   useEffect(() => {
     (window as any).electronAPI.receivingUpdatedAttackLogs(
       (_event: any, value: IAttackLog) => {
+        console.log(value);
         dispatch(updateAttackLogs(value));
       }
     );

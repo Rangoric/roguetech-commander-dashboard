@@ -6,7 +6,7 @@ interface IAttackLogSliceState {
 }
 
 const initialState: IAttackLogSliceState = {
-  attackLog: { mechs: [] },
+  attackLog: { mechs: { ["default"]: {} as any } },
 };
 
 export const attackLogsSlice = createSlice({

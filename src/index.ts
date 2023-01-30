@@ -29,10 +29,13 @@ const createWindow = (): void => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
-  mainWindow.webContents.send(
-    "New Report Commander",
-    convertXlsxToAttackLog(readXlsx(sampleAttackLogFileName))
-  );
+  // mainWindow.webContents.send("New Report Commander", {});
+  setInterval(() => {
+    const newAttackLog = convertXlsxToAttackLog(
+      readXlsx(`${sampleAttackLogFileName}`)
+    );
+    mainWindow.webContents.send("New-Report-Commander", newAttackLog);
+  }, 1000);
 };
 
 // This method will be called when Electron has finished

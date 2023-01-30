@@ -5,5 +5,5 @@ import { contextBridge, ipcRenderer } from "electron";
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 contextBridge.exposeInMainWorld("electronAPI", {
   receivingUpdatedAttackLogs: (callback: any) =>
-    ipcRenderer.on("New Report Commander", callback),
+    ipcRenderer.on("New-Report-Commander", callback),
 });
