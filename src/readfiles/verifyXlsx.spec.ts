@@ -33,7 +33,6 @@ describe(`Given a crit sheet`, () => {
   });
   describe(`when we look at the data`, () => {
     test(`then we have the expected number of rows`, () => {
-      console.log(critSheet);
       expect(critSheet).toHaveLength(180);
     });
   });
