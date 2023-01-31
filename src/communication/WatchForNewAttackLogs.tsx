@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { IAttackLog } from "./store/commanderAttackLog/IAttackLog";
-import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { updateAttackLogs } from "./store/messageSlice";
+import { IAttackLog } from "../store/commanderAttackLog/IAttackLog";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { updateAttackLogs } from "../store/messageSlice";
 
-export const ShowMessages = () => {
+export const WatchForNewAttackLogs = () => {
   const dispatch = useAppDispatch();
   const attackLog = useAppSelector((t) => t.messageSlice.attackLog);
   useEffect(() => {
@@ -14,5 +14,5 @@ export const ShowMessages = () => {
       }
     );
   }, []);
-  return <>{JSON.stringify(attackLog)}</>;
+  return <></>;
 };

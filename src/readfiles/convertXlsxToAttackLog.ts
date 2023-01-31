@@ -41,14 +41,20 @@ const getAllMechs = (
         ammo: record.ammo,
         mode: record.mode,
         attacks: 0,
+        misses: 0,
+
         hits: 0,
-        misses: -1,
+        totalDamage: 0,
         averageDamage: -1,
-        totalDamage: -1,
+
         aoeHits: 0,
-        totalAOEDamage: -1,
+        totalAOEDamage: 0,
+        averageAOEDamage: 0,
+
+        otherHits: 0,
         totalDamageToOthers: -1,
         averageDamageToOthers: -1,
+
         attackId: -1,
       };
       mechs[record.attacker].weapons.push(foundWeapon);
@@ -58,9 +64,14 @@ const getAllMechs = (
       foundWeapon.attacks++;
       if (record.location !== `(65536)Ground`) {
         foundWeapon.hits++;
+        foundWeapon.totalDamage += +record.damage;
+        foundWeapon.averageDamage = foundWeapon.totalDamage / foundWeapon.hits;
+      } else {
+        foundWeapon.misses++;
       }
     } else {
       foundWeapon.aoeHits++;
+      foundWeapon.totalAOEDamage += Math.floor(Math.max(1, +record.damage));
     }
   });
 

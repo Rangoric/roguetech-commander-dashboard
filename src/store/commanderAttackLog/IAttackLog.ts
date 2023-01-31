@@ -12,14 +12,19 @@ export interface IWeaponAttackLog {
   ammo: string;
   mode: string;
   attacks: number;
-  hits: number;
   misses: number;
-  averageDamage: number;
+
+  hits: number;
   totalDamage: number;
-  averageDamageToOthers: number;
-  totalDamageToOthers: number;
+  averageDamage: number;
+
   aoeHits: number;
   totalAOEDamage: number;
+  averageAOEDamage: number;
+
+  otherHits: number;
+  totalDamageToOthers: number;
+  averageDamageToOthers: number;
 
   // Record keeping not shown
   attackId: number;

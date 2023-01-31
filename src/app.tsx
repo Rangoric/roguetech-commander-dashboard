@@ -18,7 +18,7 @@ import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
-import { ShowMessages } from "./ShowMessages";
+import { WatchForNewAttackLogs } from "./communication/WatchForNewAttackLogs";
 
 ChartJS.register(
   CategoryScale,
@@ -68,7 +68,7 @@ if (root) {
       <ThemeProvider theme={RCDTheme}>
         <CssBaseline />
         <Provider store={store}>
-          <ShowMessages />
+          <WatchForNewAttackLogs />
           <h2>Welcome Commander</h2>
           <Button variant={"contained"}>Button</Button>
           <Bar options={options} data={data} />

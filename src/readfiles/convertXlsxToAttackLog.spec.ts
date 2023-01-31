@@ -33,14 +33,26 @@ describe(`Given the Oracle ACMV data`, () => {
     test(`then it has mode 'B'`, () => {
       expect(weapon.mode).toBe("B");
     });
-    test(`then is has 12 attacks`, () => {
+    test(`then is has some attacks`, () => {
       expect(weapon.attacks).toBe(12);
     });
-    test(`then it has 2 hits`, () => {
+    test(`then it has some hits`, () => {
       expect(weapon.hits).toBe(2);
     });
-    test(`then it has 54 aoe hits`, () => {
+    test(`then it has some aoe hits`, () => {
       expect(weapon.aoeHits).toBe(44);
+    });
+    test(`then it has some damage`, () => {
+      expect(weapon.totalDamage).toBe(10);
+    });
+    test(`then it has a chunk of missed`, () => {
+      expect(weapon.misses).toBe(10);
+    });
+    test(`then it has an average damage of 5`, () => {
+      expect(weapon.averageDamage).toBe(5);
+    });
+    test(`then it has a total aoe damage`, () => {
+      expect(weapon.totalAOEDamage).toBe(44);
     });
   });
 });
