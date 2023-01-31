@@ -1,4 +1,4 @@
-import { IMechAttackLog } from "src/store/commanderAttackLog/IAttackLog";
+import { IMechAttackLog } from "../store/commanderAttackLog/IAttackLog";
 import { MechDisplay } from "./MechDisplay";
 
 export interface IMechsDisplayProps {
