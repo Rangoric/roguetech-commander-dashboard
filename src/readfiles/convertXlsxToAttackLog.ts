@@ -1,85 +1,79 @@
 import {
   IAttackLog,
   IMechAttackLog,
-  IWeaponAttackLog,
 } from "../store/commanderAttackLog/IAttackLog";
 import { utils, WorkBook } from "xlsx";
-import { IRawCritAttackLog, IRawDamageAttackLog } from "./IRawAttackLog";
+import { IRawDamageAttackLog } from "./IRawAttackLog";
 
 export const convertXlsxToAttackLog = (workbook: WorkBook): IAttackLog => {
   const damageSheet = utils.sheet_to_json<IRawDamageAttackLog>(
     workbook.Sheets["damage"]
   );
-  const critSheet = utils.sheet_to_json<IRawCritAttackLog>(
-    workbook.Sheets["crit"]
-  );
   return {
-    mechs: getAllMechs(damageSheet, critSheet),
+    mechs: getAllMechs(damageSheet),
   };
 };
 
-const getAllMechs = (
-  damageSheet: IRawDamageAttackLog[],
-  critSheet: IRawCritAttackLog[]
-) => {
+const getAllMechs = (damageSheet: IRawDamageAttackLog[]) => {
   const mechs: Record<string, IMechAttackLog> = {};
 
   damageSheet.forEach((record) => {
-    if (!mechs[record.attacker]) {
-      mechs[record.attacker] = {
-        name: record.attacker,
-        weapons: [],
-      };
-    }
+    const mech = insist(mechs, record.attacker, {
+      name: record.attacker,
+      weapons: {},
+    });
 
-    let foundWeapon = mechs[record.attacker].weapons.find(
-      byWeaponFiring(record)
-    );
-    if (!foundWeapon) {
-      foundWeapon = {
-        name: record.weapon,
-        ammo: record.ammo,
-        mode: record.mode,
-        attacks: 0,
-        misses: 0,
+    const weapon = insist(mech.weapons, record.weapon, {
+      name: record.weapon,
+      ammo: {},
+    });
 
-        hits: 0,
-        totalDamage: 0,
-        averageDamage: -1,
+    const ammo = insist(weapon.ammo, record.ammo, {
+      name: record.ammo,
+      mode: {},
+    });
 
-        aoeHits: 0,
-        totalAOEDamage: 0,
-        averageAOEDamage: 0,
+    const mode = insist(ammo.mode, record.mode, {
+      name: record.mode,
 
-        otherHits: 0,
-        totalDamageToOthers: -1,
-        averageDamageToOthers: -1,
+      attacks: 0,
+      misses: 0,
 
-        attackId: -1,
-      };
-      mechs[record.attacker].weapons.push(foundWeapon);
-    }
+      hits: 0,
+      totalDamage: 0,
+      averageDamage: 0,
+
+      aoeHits: 0,
+      totalAOEDamage: 0,
+      averageAOEDamage: 0,
+
+      otherHits: 0,
+      totalDamageToOthers: -1,
+      averageDamageToOthers: -1,
+    });
 
     if (record["hit roll"] !== 0) {
-      foundWeapon.attacks++;
+      mode.attacks++;
       if (record.location !== `(65536)Ground`) {
-        foundWeapon.hits++;
-        foundWeapon.totalDamage += +record.damage;
-        foundWeapon.averageDamage = foundWeapon.totalDamage / foundWeapon.hits;
+        mode.hits++;
+        mode.totalDamage += Math.floor(Math.max(1, +record.damage));
+        mode.averageDamage =
+          Math.round((mode.totalDamage / mode.hits) * 10) / 10;
       } else {
-        foundWeapon.misses++;
+        mode.misses++;
       }
     } else {
-      foundWeapon.aoeHits++;
-      foundWeapon.totalAOEDamage += Math.floor(Math.max(1, +record.damage));
+      mode.aoeHits++;
+      mode.totalAOEDamage += Math.floor(Math.max(1, +record.damage));
+      mode.averageAOEDamage =
+        Math.round((mode.totalAOEDamage / mode.aoeHits) * 10) / 10;
     }
   });
 
   return mechs;
 };
 
-const byWeaponFiring =
-  (rawLog: IRawDamageAttackLog) => (weapon: IWeaponAttackLog) =>
-    weapon.name === rawLog.weapon &&
-    weapon.ammo === rawLog.ammo &&
-    weapon.mode === rawLog.mode;
+const insist = <T>(collection: Record<string, T>, name: string, newItem: T) => {
+  collection[name] = collection[name] ?? newItem;
+  return collection[name];
+};
