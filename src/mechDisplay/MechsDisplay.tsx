@@ -1,6 +1,6 @@
 import { Card, Grid } from "@mui/material";
 import { IMechAttackLog } from "../store/commanderAttackLog/IAttackLog";
-import { MechDisplay } from "./MechDisplay";
+import { MechTableDisplay } from "./MechTableDisplay";
 
 export interface IMechsDisplayProps {
   mechs: Record<string, IMechAttackLog>;
@@ -11,7 +11,7 @@ export const MechsDisplay = ({ mechs }: IMechsDisplayProps) => {
     <Grid container spacing={1}>
       {Object.keys(mechs).map((mechKey) => (
         <Grid item xs={6} key={mechKey}>
-          <MechDisplay mech={mechs[mechKey]} />
+          <MechTableDisplay mech={mechs[mechKey]} />
         </Grid>
       ))}
     </Grid>

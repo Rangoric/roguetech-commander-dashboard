@@ -14,7 +14,7 @@ export interface IMechDisplayProps {
   mech: IMechAttackLog;
 }
 
-export const MechDisplay = ({ mech }: IMechDisplayProps) => {
+export const MechTableDisplay = ({ mech }: IMechDisplayProps) => {
   const weaponNames = Object.keys(mech.weapons);
   return (
     <TableContainer>
