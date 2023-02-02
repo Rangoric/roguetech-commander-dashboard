@@ -8,18 +8,24 @@ export interface IMechsDisplayProps {
 }
 
 export const MechsDisplay = ({ mechs }: IMechsDisplayProps) => {
+  const sortedMechs = getSortedMechs(mechs);
   return (
     <Grid container spacing={1}>
-      {Object.keys(mechs).map((mechKey) => (
-        <Grid item key={mechKey}>
-          <Card>
-            <CardHeader title={mechKey} />
-            <CardContent>
-              <MechPieDisplay mech={mechs[mechKey]} />
-            </CardContent>
-          </Card>
-        </Grid>
-      ))}
+      {mechs &&
+        Object.keys(mechs).map((mechKey) => (
+          <Grid item key={mechKey}>
+            <Card>
+              <CardHeader title={mechKey} />
+              <CardContent>
+                <MechPieDisplay mech={mechs[mechKey]} />
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
     </Grid>
   );
+};
+
+const getSortedMechs = (mechs: Record<string, IMechAttackLog>) => {
+  return Object.keys(mechs).map((t) => mechs[t]);
 };

@@ -5,6 +5,17 @@ import {
 import { utils, WorkBook } from "xlsx";
 import { IRawDamageAttackLog } from "./IRawAttackLog";
 
+export const convertManyFilesToAttackLog = (workbooks: WorkBook[]) => {
+  let mechs = {};
+  workbooks.forEach((workbook) => {
+    mechs = getAllMechs(
+      utils.sheet_to_json<IRawDamageAttackLog>(workbook.Sheets["damage"]),
+      mechs
+    );
+  });
+  return { mechs };
+};
+
 export const convertXlsxToAttackLog = (workbook: WorkBook): IAttackLog => {
   const damageSheet = utils.sheet_to_json<IRawDamageAttackLog>(
     workbook.Sheets["damage"]
@@ -14,9 +25,10 @@ export const convertXlsxToAttackLog = (workbook: WorkBook): IAttackLog => {
   };
 };
 
-const getAllMechs = (damageSheet: IRawDamageAttackLog[]) => {
-  const mechs: Record<string, IMechAttackLog> = {};
-
+const getAllMechs = (
+  damageSheet: IRawDamageAttackLog[],
+  mechs: Record<string, IMechAttackLog> = {}
+) => {
   damageSheet.forEach((record) => {
     const mech = insist(mechs, record.attacker, {
       name: record.attacker,
