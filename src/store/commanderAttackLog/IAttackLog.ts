@@ -4,13 +4,23 @@ export interface IAttackLog {
 
 export interface IMechAttackLog {
   name: string;
-  weapons: IWeaponAttackLog[];
+  weapons: Record<string, IWeaponAttackLog>;
 }
 
 export interface IWeaponAttackLog {
   name: string;
-  ammo: string;
-  mode: string;
+  ammo: Record<string, IAmmoAttackLog>;
+}
+export interface IAmmoAttackLog {
+  name: string;
+  mode: Record<string, IModeAttackLog>;
+}
+
+export interface IModeAttackLog extends IAttackLogStats {
+  name: string;
+}
+
+export interface IAttackLogStats {
   attacks: number;
   misses: number;
 
@@ -25,7 +35,4 @@ export interface IWeaponAttackLog {
   otherHits: number;
   totalDamageToOthers: number;
   averageDamageToOthers: number;
-
-  // Record keeping not shown
-  attackId: number;
 }

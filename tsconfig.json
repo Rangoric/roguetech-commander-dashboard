@@ -15,7 +15,7 @@
       "*": ["node_modules/*"],
       "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
     }, 
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": ["src/**/*"]
 }
