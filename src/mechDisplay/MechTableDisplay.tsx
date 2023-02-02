@@ -10,11 +10,11 @@ import React from "react";
 import { IMechAttackLog } from "../store/commanderAttackLog/IAttackLog";
 import { WeaponTableRow } from "./WeaponTableRow";
 
-export interface IMechDisplayProps {
+export interface IMechTableDisplayProps {
   mech: IMechAttackLog;
 }
 
-export const MechTableDisplay = ({ mech }: IMechDisplayProps) => {
+export const MechTableDisplay = ({ mech }: IMechTableDisplayProps) => {
   const weaponNames = Object.keys(mech.weapons);
   return (
     <TableContainer>
