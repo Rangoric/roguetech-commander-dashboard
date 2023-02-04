@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, Grid } from "@mui/material";
+import { totalMechDamage } from "../store/commanderAttackLog/attackLogTools";
 import { IMechAttackLog } from "../store/commanderAttackLog/IAttackLog";
 import { MechPieDisplay } from "./MechPieDisplay";
 import { MechTableDisplay } from "./MechTableDisplay";
@@ -12,12 +13,12 @@ export const MechsDisplay = ({ mechs }: IMechsDisplayProps) => {
   return (
     <Grid container spacing={1}>
       {mechs &&
-        Object.keys(mechs).map((mechKey) => (
-          <Grid item key={mechKey}>
+        sortedMechs.map((mech) => (
+          <Grid item key={mech.name}>
             <Card>
-              <CardHeader title={mechKey} />
+              <CardHeader title={mech.name} />
               <CardContent>
-                <MechPieDisplay mech={mechs[mechKey]} />
+                <MechPieDisplay mech={mech} />
               </CardContent>
             </Card>
           </Grid>
@@ -27,5 +28,12 @@ export const MechsDisplay = ({ mechs }: IMechsDisplayProps) => {
 };
 
 const getSortedMechs = (mechs: Record<string, IMechAttackLog>) => {
-  return Object.keys(mechs).map((t) => mechs[t]);
+  return Object.keys(mechs)
+    .map((t) => ({
+      mech: mechs[t],
+      totalDamage: totalMechDamage(mechs[t]),
+    }))
+    .filter((t) => t.totalDamage > 0)
+    .sort((a, b) => b.totalDamage - a.totalDamage)
+    .map((t) => t.mech);
 };
