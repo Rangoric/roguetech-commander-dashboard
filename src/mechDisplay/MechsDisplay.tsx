@@ -35,5 +35,6 @@ const getSortedMechs = (mechs: Record<string, IMechAttackLog>) => {
     }))
     .filter((t) => t.totalDamage > 0)
     .sort((a, b) => b.totalDamage - a.totalDamage)
-    .map((t) => t.mech);
+    .map((t) => t.mech)
+    .slice(0, 12);
 };
