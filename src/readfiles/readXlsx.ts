@@ -7,9 +7,9 @@ export const readXlsx = (fileName: string) => {
   return read(buffer);
 };
 
-export const readMostRecentXlsx = (directory: string) => {
-  const fileName = newestFile(directory);
-  return [readXlsx(fileName)];
+export const readMostRecentXlsx = (directory: string, number = 10) => {
+  const fileNames = newestFile(directory, number);
+  return fileNames.map(readXlsx);
 };
 
 export const readAllXlsx = (directory: string) => {

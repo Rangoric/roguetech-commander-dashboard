@@ -5,7 +5,7 @@ import {
 import { utils, WorkBook } from "xlsx";
 import { IRawDamageAttackLog } from "./IRawAttackLog";
 
-export const convertManyFilesToAttackLog = (workbooks: WorkBook[]) => {
+export const convertManyXlsxFilesToAttackLog = (workbooks: WorkBook[]) => {
   let mechs = {};
   workbooks.forEach((workbook) => {
     mechs = getAllMechs(

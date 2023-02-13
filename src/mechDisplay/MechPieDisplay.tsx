@@ -16,17 +16,17 @@ export const MechPieDisplay = ({ mech }: IMechPieDisplayProps) => {
       id,
       data: [
         {
-          x: "Normal Damage",
+          x: "Normal",
           y: totalDamage,
         },
         {
-          x: "AoE Damage",
+          x: "AoE",
           y: totalAoeDamage,
         },
       ],
     }));
 
-  return <MechOverallPie data={overallData} />;
+  return <MechOverallPie data={overallData} mechName={mech.name} />;
 };
 
 const getPieDataFrom = (weapons: Record<string, IWeaponAttackLog>) => {
@@ -63,6 +63,6 @@ const getSortedData = (weapons: Record<string, IWeaponAttackLog>) => {
 
 const getLabelFrom = (weaponName: string, ammo: string, mode: string) => {
   return `${weaponName}${ammo !== "" && ammo !== "STD" ? ` - ${ammo}` : ""}${
-    mode !== "B" && mode !== "STD" ? ` - ${mode}` : ""
+    mode !== "BASE" && mode !== "STD" ? ` - ${mode}` : ""
   }`;
 };

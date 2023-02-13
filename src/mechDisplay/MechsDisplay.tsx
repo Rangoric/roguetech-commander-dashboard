@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, Grid } from "@mui/material";
 import { totalMechDamage } from "../store/commanderAttackLog/attackLogTools";
 import { IMechAttackLog } from "../store/commanderAttackLog/IAttackLog";
 import { MechPieDisplay } from "./MechPieDisplay";
-import { MechTableDisplay } from "./MechTableDisplay";
 
 export interface IMechsDisplayProps {
   mechs: Record<string, IMechAttackLog>;
@@ -16,7 +15,6 @@ export const MechsDisplay = ({ mechs }: IMechsDisplayProps) => {
         sortedMechs.map((mech) => (
           <Grid item key={mech.name}>
             <Card>
-              <CardHeader title={mech.name} />
               <CardContent>
                 <MechPieDisplay mech={mech} />
               </CardContent>

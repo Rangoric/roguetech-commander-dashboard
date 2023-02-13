@@ -2,7 +2,7 @@ import { styled } from "@mui/material";
 
 export const PieContainer = styled("div")`
   height: 300px;
-  width: 500px;
+  width: 400px;
 `;
 
 export const HalfPieContainer = styled("div")`

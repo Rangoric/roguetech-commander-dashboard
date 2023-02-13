@@ -1,6 +1,8 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
+import { getConfig } from "./config/config";
+import { menuTemplate } from "./menuTemplate";
 import {
-  convertManyFilesToAttackLog,
+  convertManyXlsxFilesToAttackLog,
   convertXlsxToAttackLog,
 } from "./readfiles/convertXlsxToAttackLog";
 import {
@@ -40,14 +42,26 @@ const createWindow = (): void => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
+  const { battleTechDirectory, xlsxAttackLogs } = getConfig();
+
+  const menu = Menu.buildFromTemplate(
+    menuTemplate({ battleTechDirectory, mainWindow }) as any
+  );
+
+  Menu.setApplicationMenu(menu);
+
   // mainWindow.webContents.send("New Report Commander", {});
   setInterval(() => {
-    const newAttackLog = convertManyFilesToAttackLog(
-      readMostRecentXlsx(myDirectory)
+    const { battleTechDirectory, xlsxAttackLogs } = getConfig();
+
+    const menu = Menu.buildFromTemplate(
+      menuTemplate({ battleTechDirectory, mainWindow }) as any
     );
-    // const newAttackLog = convertXlsxToAttackLog(
-    //   readXlsx(`${sampleAttackLogFileName}`)
-    // );
+
+    Menu.setApplicationMenu(menu);
+    const newAttackLog = convertManyXlsxFilesToAttackLog(
+      readMostRecentXlsx(xlsxAttackLogs, 1)
+    );
     mainWindow.webContents.send("New-Report-Commander", newAttackLog);
   }, 1000);
 };
