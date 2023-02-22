@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { IAttackLog } from "../store/commanderAttackLog/IAttackLog";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/renderHooks";
 import { updateAttackLogs } from "../store/messageSlice";
 
 export const WatchForNewAttackLogs = () => {

@@ -1,4 +1,4 @@
-import { useAppSelector } from "../store/hooks";
+import { useAppSelector } from "../store/renderHooks";
 import { MechsDisplay } from "./MechsDisplay";
 
 export const MechsDisplayContainer = () => {

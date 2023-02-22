@@ -1,4 +1,4 @@
-import { sampleAttackLogFileName } from "../testingTools/sampleAttackLogFileName";
+import { sampleAttackLogFileName } from "../testingTools/myDirectory";
 import { readXlsx } from "./readXlsx";
 import { convertXlsxToAttackLog } from "./convertXlsxToAttackLog";
 

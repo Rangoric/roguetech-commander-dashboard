@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { attackLogsSlice } from "./messageSlice";
 
-export const store = configureStore({
+export const renderStore = configureStore({
   reducer: {
     messageSlice: attackLogsSlice.reducer,
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RenderState = ReturnType<typeof renderStore.getState>;
 
-export type AppDispatch = typeof store.dispatch;
+export type RenderDispatch = typeof renderStore.dispatch;

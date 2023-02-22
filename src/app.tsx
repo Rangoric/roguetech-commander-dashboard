@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { RCDTheme } from "./theme/RCDTheme";
-import { store } from "./store/store";
+import { renderStore } from "./store/renderStore";
 import { Provider } from "react-redux";
 import { WatchForNewAttackLogs } from "./communication/WatchForNewAttackLogs";
 import { MechsDisplayContainer } from "./mechDisplay/MechsDisplayContainer";
@@ -11,13 +11,13 @@ if (root) {
   const reactRoot = createRoot(root);
   reactRoot.render(
     <>
-      <ThemeProvider theme={RCDTheme}>
-        <CssBaseline />
-        <Provider store={store}>
-          <WatchForNewAttackLogs />
+      <Provider store={renderStore}>
+        <WatchForNewAttackLogs />
+        <ThemeProvider theme={RCDTheme}>
+          <CssBaseline />
           <MechsDisplayContainer />
-        </Provider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </Provider>
     </>
   );
 }

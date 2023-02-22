@@ -1,15 +1,22 @@
-import { app, BrowserWindow, dialog, Menu } from "electron";
-import { setConfig } from "./config/config";
+import {
+  app,
+  BrowserWindow,
+  dialog,
+  Menu,
+  MenuItem,
+  MenuItemConstructorOptions,
+} from "electron";
+import { IConfiguration, setConfig } from "./config/config";
 
 const isMac = process.platform === "darwin";
 
 export interface IMenuTemplateProps {
-  battleTechDirectory: string;
+  configuration: IConfiguration;
   mainWindow: BrowserWindow;
 }
 
 export const menuTemplate = ({
-  battleTechDirectory,
+  configuration: { battleTechDirectory, rogueTechDirectory },
   mainWindow,
 }: IMenuTemplateProps) => [
   ...(isMac
@@ -45,16 +52,19 @@ export const menuTemplate = ({
           }
         },
       },
-      isMac ? { role: "close" } : { role: "quit" },
-    ],
-  },
-  {
-    label: "Edit",
-    submenu: [],
-  },
-  {
-    label: "View",
-    submenu: [
+      {
+        label: `RogueTech Launcher Directory: ${rogueTechDirectory}`,
+        click: async () => {
+          const result = await dialog.showOpenDialog(mainWindow, {
+            properties: ["openDirectory"],
+            defaultPath: rogueTechDirectory,
+          });
+          if (result.filePaths.length > 0) {
+            setConfig({ rogueTechDirectory: result.filePaths[0] });
+          }
+        },
+      },
+      { type: "separator" },
       { role: "reload" },
       { role: "forceReload" },
       { role: "toggleDevTools" },
@@ -64,6 +74,16 @@ export const menuTemplate = ({
       { role: "zoomOut" },
       { type: "separator" },
       { role: "togglefullscreen" },
+      { type: "separator" },
+      isMac ? { role: "close" } : { role: "quit" },
+    ],
+  },
+  {
+    label: "View",
+    submenu: [
+      { label: `Performance` },
+      { label: `Mechalog` },
+      { label: `Armoury` },
     ],
   },
   // { role: 'windowMenu' }
@@ -82,6 +102,7 @@ export const menuTemplate = ({
         : [{ role: "close" }]),
     ],
   },
+  { type: "separator" },
   {
     role: "help",
     submenu: [
