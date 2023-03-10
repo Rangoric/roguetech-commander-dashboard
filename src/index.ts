@@ -1,16 +1,17 @@
-import { app, BrowserWindow, Menu } from "electron";
-import { getConfig } from "./config/config";
-import { menuTemplate } from "./menuTemplate";
+import { app, BrowserWindow, ipcMain, Menu } from "electron";
+import { setupCommunicationAPI } from "./main/communicationApi/setupCommunicationAPI";
+import { getConfig } from "./main/config/config";
+import { menuTemplate } from "./main/menuTemplate";
 import {
   convertManyXlsxFilesToAttackLog,
   convertXlsxToAttackLog,
-} from "./readAttackLogfiles/convertXlsxToAttackLog";
+} from "./main/readAttackLogFiles/convertXlsxToAttackLog";
 import {
   readAllXlsx,
   readMostRecentXlsx,
   readRandomXlsx,
   readXlsx,
-} from "./readAttackLogfiles/readXlsx";
+} from "./main/readAttackLogFiles/readXlsx";
 import {
   myDirectory,
   sampleAttackLogFileName,
@@ -49,6 +50,8 @@ const createWindow = (): void => {
   );
 
   Menu.setApplicationMenu(menu);
+
+  setupCommunicationAPI();
 
   setInterval(() => {
     const configuration = getConfig();
