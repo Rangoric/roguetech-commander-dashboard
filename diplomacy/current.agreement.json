@@ -1,0 +1,139 @@
+{
+  "endX": 700,
+  "endY": -300,
+  "startX": 400,
+  "startY": 100,
+  "RenderOptions": {
+    "colourOverride": {
+      "NoFaction": "#9F9F9F"
+    },
+    "factionFilter": [],
+    "factionFilterMode": "Blacklist",
+    "fontColour": "#FF4f4f",
+    "fontName": "JetBrainsMonoNL-ExtraBold",
+    "fontOffset": -30,
+    "fontSize": 16,
+    "lineColour": "#555555",
+    "lineWidth": 1,
+    "mapScalar": 8,
+    "showAdjacency": true,
+    "showControl": false,
+    "showNames": true,
+    "showOwner": false,
+    "systemScalar": 8,
+    "SystemSegments": [
+      {
+        "segmentColour": "#FF0000",
+        "segmentWidth": 4,
+        "SystemSegments": [
+          {
+            "firstSystem": "Altoona (FS)",
+            "secondSystem": "Delacambre"
+          },
+          {
+            "firstSystem": "Delacambre",
+            "secondSystem": "Winfield"
+          },
+          {
+            "firstSystem": "Winfield",
+            "secondSystem": "Kountze"
+          },
+          {
+            "firstSystem": "Kountze",
+            "secondSystem": "Stratford"
+          },
+          {
+            "firstSystem": "Stratford",
+            "secondSystem": "Sterlington"
+          },
+          {
+            "firstSystem": "Sterlington",
+            "secondSystem": "Cork"
+          }
+        ]
+      },
+      {
+        "segmentColour": "#ffc0cb",
+        "segmentWidth": 4,
+        "SystemSegments": [
+          {
+            "firstSystem": "Vackisujfalu",
+            "secondSystem": "Hoonaar"
+          },
+          {
+            "firstSystem": "Hoonaar",
+            "secondSystem": "Baranda"
+          },
+          {
+            "firstSystem": "Baranda",
+            "secondSystem": "Fetsund"
+          },
+          {
+            "firstSystem": "Fetsund",
+            "secondSystem": "Olindo"
+          },
+          {
+            "firstSystem": "Olindo",
+            "secondSystem": "Jaboatao"
+          },
+          {
+            "firstSystem": "Jaboatao",
+            "secondSystem": "Rennes"
+          },
+          {
+            "firstSystem": "Rennes",
+            "secondSystem": "Filtvelt"
+          },
+          {
+            "firstSystem": "Filtvelt",
+            "secondSystem": "Wetumpka"
+          },
+          {
+            "firstSystem": "Wetumpka",
+            "secondSystem": "Cogdell"
+          },
+          {
+            "firstSystem": "Cogdell",
+            "secondSystem": "Jesup"
+          },
+          {
+            "firstSystem": "Jesup",
+            "secondSystem": "St. Cyr"
+          },
+          {
+            "firstSystem": "St. Cyr",
+            "secondSystem": "Steinhatchee"
+          },
+          {
+            "firstSystem": "Steinhatchee",
+            "secondSystem": "Zolfo"
+          },
+          {
+            "firstSystem": "Zolfo",
+            "secondSystem": "Shawnee"
+          },
+          {
+            "firstSystem": "Shawnee",
+            "secondSystem": "Bayeux"
+          },
+          {
+            "firstSystem": "Bayeux",
+            "secondSystem": "Humansville"
+          },
+          {
+            "firstSystem": "Humansville",
+            "secondSystem": "Chenier"
+          },
+          {
+            "firstSystem": "Chenier",
+            "secondSystem": "Abbeville"
+          },
+          {
+            "firstSystem": "Abbeville",
+            "secondSystem": "Kentwood"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+- Derelict:
+  - Pilots only
+  - Unlocks Air Shows (LAM fests)
+  - Gives LAMs or LAM related things usually
+- Test Pilot
+  - Pilots Only
+  - Gives a Quad & related things
+- Long Ago and Far Away
+  - Pilots and Mechs
+  - High Difficulty
+- Main Campaign
+  - Pilots and Mechs
+  - Low -> Medium Diff

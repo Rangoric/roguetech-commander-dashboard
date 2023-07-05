@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import json5 from "json5";
+import util from "util";
+
+const readFile = util.promisify(fs.readFile);
 
 export const getAllJsonFileNames = (directoryPath: string): string[] => {
   const objectNames = fs.readdirSync(directoryPath);
@@ -23,22 +26,19 @@ export const getAllJsonFileNames = (directoryPath: string): string[] => {
   return arrays.reduce((p, c) => [...p, ...c], strings);
 };
 
-export const getAllJsonFromFiles = (paths: string[]) => {
-  return paths
-    .map((t) => {
-      if (typeof t === "string") {
-        console.log(t);
-        return {
-          fileName: t,
-          content: json5.parse(fs.readFileSync(t, "utf-8")),
-        };
-      }
-      return null;
-    })
-    .filter((t) => t);
+export const getAllJsonFromFiles = async (paths: string[]) => {
+  const allContents = [];
+  for (let fileName of paths.filter((t) => typeof t === "string")) {
+    allContents.push(await readFile(fileName, "utf-8"));
+  }
+
+  return allContents.map((item, index) => ({
+    fileName: paths[index],
+    content: json5.parse(item),
+  }));
 };
 
-const fileNamesToIgnore = ["\\mod.json"];
+const fileNamesToIgnore: string[] = [];
 
 export const filterOutFileNames = (paths: string) => {
   return !fileNamesToIgnore.find((t) => paths.endsWith(t));

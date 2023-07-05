@@ -4,17 +4,21 @@ import {
   getAllJsonFileNames,
   getAllJsonFromFiles,
 } from "../mechalog/getAllJson";
+import { typeFiles } from "../mechalog/typeFiles";
 
-export const mechalogGet = () => {
+export const mechalogGet = async () => {
   console.log("Getting Mechalog");
   const config = getConfig();
   const fileNames = getAllJsonFileNames(config.rogueTechDirectory);
+
+  const start = Date.now();
   console.log("Total File Count:", fileNames.length);
 
-  const filteredNames = fileNames.filter(filterOutFileNames);
+  const files = await getAllJsonFromFiles(fileNames);
+  const typedFiles = typeFiles(files);
 
-  console.log("Filtered File Count:", filteredNames.length);
+  const end = Date.now() - start;
+  console.log("Time Taken:", `${end / 1000}s`);
 
-  const files = getAllJsonFromFiles(filteredNames);
-  return files;
+  return typedFiles;
 };
