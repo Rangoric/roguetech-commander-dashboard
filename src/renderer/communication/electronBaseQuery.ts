@@ -9,8 +9,7 @@ export const electronBaseQuery: BaseQueryFn<
   string[],
   FetchBaseQueryError
 > = async ({ url, method, body }, stuff, extraOptions) => {
-  const result = (window as any).electronAPI.do(`${url}/${method}`, body);
+  const result = (window as any).electronAPI.do(`${method}: ${url}`, body);
   const realResult = await result;
-  console.log(realResult);
   return { data: realResult };
 };

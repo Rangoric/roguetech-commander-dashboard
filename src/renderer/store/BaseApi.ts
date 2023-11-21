@@ -1,9 +1,9 @@
-import { createApi } from "@reduxjs/toolkit/query";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { electronBaseQuery } from "../communication/electronBaseQuery";
 import { eTagTypes } from "./eTagTypes";
 
 export const BaseApi = createApi({
   baseQuery: electronBaseQuery,
-  tagTypes: Object.keys(eTagTypes),
-  endpoints: (build) => ({}),
+  tagTypes: Object.values(eTagTypes),
+  endpoints: () => ({}),
 });
