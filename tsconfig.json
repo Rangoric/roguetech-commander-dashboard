@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "allowJs": true,
+    "target": "ESNext",
     "module": "commonjs",
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
@@ -11,11 +11,7 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "paths": {
-      "*": ["node_modules/*"],
-      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
-    }, 
-    "jsx": "react-jsx",
+    "jsx":"react-jsx"
   },
-  "include": ["src/**/*"]
+  "include": ["src"]
 }

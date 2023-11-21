@@ -85,8 +85,8 @@ typings/
 # Webpack
 .webpack/
 
+# Vite
+.vite/
+
 # Electron-Forge
 out/
-
-data/
-sampleFiles/~$Test Data.xlsx
