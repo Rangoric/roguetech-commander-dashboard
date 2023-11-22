@@ -4,5 +4,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("@headlessui/tailwindcss")],
+  daisyui: {
+    themes: ["synthwave"],
+  },
+  plugins: [require("@headlessui/tailwindcss"), require("daisyui")],
 };

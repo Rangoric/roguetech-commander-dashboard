@@ -31,6 +31,6 @@ const configFromString = (config: string): IConfiguration => {
     battleTechDirectory,
     rogueTechDirectory,
     xlsxAttackLogs:
-      battleTechDirectory + `\\Mods\\Core\\CustomAmmoCategories\\AttacksLogs`,
+      battleTechDirectory + `/Mods/Core/CustomAmmoCategories/AttacksLogs/`,
   };
 };

@@ -26,6 +26,9 @@
  * ```
  */
 
+import "leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet";
+
 import "./index.css";
 
 import "./renderer/app";

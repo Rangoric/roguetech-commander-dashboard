@@ -1,3 +1,4 @@
+import { IAttackLog } from "src/shared/types/IAttackLog";
 import { BaseApi } from "./BaseApi";
 
 export const BattleReportApi = BaseApi.injectEndpoints({
@@ -8,7 +9,7 @@ export const BattleReportApi = BaseApi.injectEndpoints({
         method: "GET",
       }),
     }),
-    getBattleReport: build.query<any, string>({
+    getBattleReport: build.query<IAttackLog, string>({
       query: (battleReportId) => ({
         url: "/battle-report",
         method: "GET",
