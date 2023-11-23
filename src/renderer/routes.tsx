@@ -1,10 +1,11 @@
 import React from "react";
 import { Dashboard } from "./dashboard/Dashboard";
-import { BattleReport } from "./battle-reports/BattleReport";
 import { Astrolab } from "./astrolab/Astrolab";
 import { Armoury } from "./armoury/Armoury";
 import { Mechalog } from "./mechalog/Mechalog";
 import { Layout } from "./components/Layout";
+import { MostRecentPage } from "./battle-reports/MostRecentPage";
+import { BattleReportPage } from "./battle-reports/BattleReportPage";
 
 export const routes = [
   {
@@ -16,8 +17,12 @@ export const routes = [
         element: <Dashboard />,
       },
       {
+        path: "/battle-report/most-recent",
+        element: <MostRecentPage />,
+      },
+      {
         path: "/battle-report/:id",
-        element: <BattleReport />,
+        element: <BattleReportPage />,
       },
       {
         path: "/mechalog",

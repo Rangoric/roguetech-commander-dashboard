@@ -9,7 +9,7 @@ const linkDefinitions = (data: string[] = []) => {
     },
     data[0]
       ? {
-          to: `/battle-report/${data[0]}`,
+          to: `/battle-report/most-recent`,
           text: "Most Recent Battle Report",
         }
       : undefined,
@@ -29,10 +29,12 @@ const linkDefinitions = (data: string[] = []) => {
 };
 
 export const Shortcuts = () => {
-  const { data = [] } = useGetAllBattleReportsQuery();
+  const { data = [] } = useGetAllBattleReportsQuery(undefined, {
+    pollingInterval: 60000,
+  });
   const location = useLocation();
   return (
-    <div className={"sticky top-0 bg-indigo-900 tabs tabs-bordered"}>
+    <div className={"bg-indigo-900 tabs tabs-bordered"}>
       {linkDefinitions(data).map((t) => (
         <Link
           key={t.to}

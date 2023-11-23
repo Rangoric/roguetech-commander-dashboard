@@ -21,13 +21,14 @@ export const Astrolab = () => {
           center={[0, 0]}
           zoom={5}
         >
-          {circleList.map((t) => (
-            <Circle center={t} radius={6}>
+          {circleList.map((t, i) => (
+            <Circle center={t} radius={6} key={i}>
               <Popup>Border Circle</Popup>
             </Circle>
           ))}
           {data?.starSystems.map((t) => (
             <Circle
+              key={t.Description.Id}
               center={[t.Position.y / 100, t.Position.x / 100]}
               radius={5000}
             >
