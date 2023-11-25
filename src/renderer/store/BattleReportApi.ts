@@ -15,6 +15,16 @@ export const BattleReportApi = BaseApi.injectEndpoints({
         method: "GET",
         body: battleReportId,
       }),
+      serializeQueryArgs: ({ queryArgs }) => `battle-report: ${queryArgs}`,
+      merge: (currentCache, newItem) => {
+        if (
+          currentCache.damage.length !== newItem.damage.length ||
+          currentCache.crits.length !== newItem.crits.length
+        ) {
+          return newItem;
+        }
+      },
+      forceRefetch: ({ currentArg, previousArg }) => currentArg !== previousArg,
     }),
   }),
 });

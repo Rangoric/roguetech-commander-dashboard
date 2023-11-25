@@ -11,11 +11,14 @@ export const BattleReportRadialBars: FC<IBattleReportRadialBarsProps> = ({
   data,
 }) => {
   const radialBarData = useGenerateRadialBarData(data);
-  return (
-    <div className={"flex flex-row flex-wrap"}>
-      {radialBarData.mechs.map((mech) => (
-        <MechReportRadialBars data={mech} key={mech.id} />
-      ))}
-    </div>
-  );
+  const renderThis = useMemo(() => {
+    return (
+      <div className={"flex flex-row flex-wrap"}>
+        {radialBarData.mechs.map((mech) => (
+          <MechReportRadialBars data={mech} key={mech.name} />
+        ))}
+      </div>
+    );
+  }, [radialBarData]);
+  return renderThis;
 };

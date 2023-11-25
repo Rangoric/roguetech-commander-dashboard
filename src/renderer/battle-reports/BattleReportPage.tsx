@@ -6,10 +6,11 @@ import {
 import { Layout } from "../components/Layout";
 import { useMemo } from "react";
 import { BattleReportTable } from "./BattleReport.table";
+import { BattleReportRadialBars } from "./BattleReport.radial.bars";
 
 export const BattleReportPage = () => {
   const { id } = useParams<{ id: string }>();
   const { data } = useGetBattleReportQuery(id);
 
-  return <>{data && <BattleReportTable data={data} />}</>;
+  return <>{data && <BattleReportRadialBars data={data} />}</>;
 };

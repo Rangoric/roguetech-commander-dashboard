@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { IRadialBarMechData } from "./useGenerateRadialBarData";
 import { ResponsiveRadialBar } from "@nivo/radial-bar";
+import { themeValues } from "../theme";
 
 interface IMechReportRadialBarsProps {
   data: IRadialBarMechData;
@@ -10,9 +11,9 @@ export const MechReportRadialBars: FC<IMechReportRadialBarsProps> = ({
   data,
 }) => {
   return (
-    <div className={"w-96 h-96"}>
+    <div className={"w-96 h-96 p-4"}>
       <ResponsiveRadialBar
-        data={[data]}
+        data={data.data}
         valueFormat=">-,.0f"
         padding={0.4}
         cornerRadius={2}
@@ -20,8 +21,9 @@ export const MechReportRadialBars: FC<IMechReportRadialBarsProps> = ({
         radialAxisStart={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
         circularAxisOuter={{ tickSize: 5, tickPadding: 12, tickRotation: 0 }}
         enableCircularGrid={false}
-        enableLabels={true}
-        colors={{ scheme: "red_blue" }}
+        enableLabels={false}
+        colors={{ scheme: "paired" }}
+        theme={themeValues}
         legends={[
           {
             anchor: "bottom-left",
@@ -33,21 +35,35 @@ export const MechReportRadialBars: FC<IMechReportRadialBarsProps> = ({
             itemDirection: "left-to-right",
             itemWidth: 100,
             itemHeight: 18,
-            itemTextColor: "#fff",
             symbolSize: 18,
             symbolShape: "circle",
-            effects: [
-              {
-                on: "hover",
-                style: {
-                  itemTextColor: "#000",
-                },
-              },
-            ],
           },
         ]}
-        layers={["grid", "tracks", "bars", "labels", "legends"]}
+        layers={[
+          "grid",
+          "tracks",
+          "bars",
+          "labels",
+          "legends",
+          PieCaption(data.name),
+        ]}
       />
     </div>
   );
 };
+const PieCaption =
+  (caption: string) =>
+  ({ center: [x, y] }: any) => {
+    return (
+      <text
+        fill={"grey"}
+        x={x}
+        y={y - 14}
+        textAnchor={"end"}
+        fontSize={14}
+        fontWeight={`800`}
+      >
+        {caption}
+      </text>
+    );
+  };
